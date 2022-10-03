@@ -16,12 +16,13 @@ public class DBHelper extends SQLiteOpenHelper {
     private static String DB_PATH;
     private static String DB_NAME = "songs.db";
     private static final int SCHEMA = 1;
-    static String TABLE = "Songs";
+    static String TABLE = "songs";
 
     static final String COLUMN_ID = "_id";
-    static final String COLUMN_TITLE = "Title";
-    static final String COLUMN_TEXT = "Text";
-    static final String COLUMN_IMAGE = "Image";
+    static final String COLUMN_NUM = "num";
+    static final String COLUMN_TITLE = "title";
+    static final String COLUMN_TEXT = "text";
+    static final String COLUMN_IMAGE = "image";
     private Context myContext;
 
     DBHelper(Context context) {

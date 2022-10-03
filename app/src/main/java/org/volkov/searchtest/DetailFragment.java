@@ -2,10 +2,12 @@ package org.volkov.searchtest;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class DetailFragment extends Fragment {
 
@@ -31,9 +35,14 @@ public class DetailFragment extends Fragment {
         ImageView scoreView = getView().findViewById(R.id.scoreView);
         TextView songTextView = getView().findViewById(R.id.songTextView);
 
-        ByteArrayInputStream imageStream = new ByteArrayInputStream(data.getByteArray("IMAGE"));
-        Bitmap image = BitmapFactory.decodeStream(imageStream);
-        scoreView.setImageBitmap(image);
+        String filename = "images/" + data.getString("IMAGE");
+        try(InputStream inputStream = getActivity().getApplicationContext().getAssets()
+                .open(filename)){
+            Drawable drawable = Drawable.createFromStream(inputStream, null);
+            scoreView.setImageDrawable(drawable);
+        } catch (IOException e) {
+            Log.d("Detail fragment", e.getMessage());
+        }
         songTextView.setText(data.getString("TEXT"));
     }
 }

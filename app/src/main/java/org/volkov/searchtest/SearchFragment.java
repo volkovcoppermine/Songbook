@@ -75,8 +75,8 @@ public class SearchFragment extends Fragment {
                 Bundle data = new Bundle();
 
                 //TODO: заменить на getColumnIndex?
-                data.putString("TEXT", selectedItem.getString(2));
-                data.putByteArray("IMAGE", selectedItem.getBlob(3));
+                data.putString("TEXT", selectedItem.getString(4));
+                data.putString("IMAGE", selectedItem.getString(3));
                 fragmentSendDataListener.onSendData(data);
             }
         });
@@ -88,11 +88,10 @@ public class SearchFragment extends Fragment {
 
         try {
             db = dbHelper.open();
-            cursor = db.rawQuery(String.format("select %1$s, %2$s, %3$s, %4$s from %5$s order by %1$s",
-                    DBHelper.COLUMN_ID, DBHelper.COLUMN_TITLE, DBHelper.COLUMN_TEXT,
-                    DBHelper.COLUMN_IMAGE, DBHelper.TABLE), null);
+            cursor = db.rawQuery(String.format("select * from %s order by %s",
+                    DBHelper.TABLE, DBHelper.COLUMN_NUM), null);
 
-            String[] headers = new String[]{DBHelper.COLUMN_ID, DBHelper.COLUMN_TITLE};
+            String[] headers = new String[]{DBHelper.COLUMN_NUM, DBHelper.COLUMN_TITLE};
             adapter = new SimpleCursorAdapter(context, android.R.layout.two_line_list_item, cursor,
                     headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
 
@@ -118,13 +117,11 @@ public class SearchFragment extends Fragment {
                 @Override
                 public Cursor runQuery(CharSequence constraint) {
                     if (constraint == null || constraint.length() == 0) {
-                        return db.rawQuery(String.format("select %s, %s, %s, %s from %s",
-                                DBHelper.COLUMN_ID, DBHelper.COLUMN_TITLE, DBHelper.COLUMN_TEXT,
-                                DBHelper.COLUMN_IMAGE, DBHelper.TABLE), null);
+                        return db.rawQuery(String.format("select * from %s order by %s",
+                                DBHelper.TABLE, DBHelper.COLUMN_NUM), null);
                     } else {
-                        return db.rawQuery(String.format("select %1$s, %2$s, %3$s, %4$s from %5$s where %2$s like ? or %1$s like ? order by %1$s",
-                                        DBHelper.COLUMN_ID, DBHelper.COLUMN_TITLE, DBHelper.COLUMN_TEXT,
-                                        DBHelper.COLUMN_IMAGE, DBHelper.TABLE),
+                        return db.rawQuery(String.format("select * from %1$s where %2$s like ? or %3$s like ? order by %2$s",
+                                        DBHelper.TABLE, DBHelper.COLUMN_NUM, DBHelper.COLUMN_TITLE),
                                 new String[]{"%" + constraint.toString() + "%", "%" + constraint.toString() + "%"});
                     }
                 }
