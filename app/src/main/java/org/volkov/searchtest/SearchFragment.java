@@ -77,6 +77,7 @@ public class SearchFragment extends Fragment {
                 //TODO: заменить на getColumnIndex?
                 data.putString("TEXT", selectedItem.getString(4));
                 data.putString("IMAGE", selectedItem.getString(3));
+                data.putString("SOUND", selectedItem.getString(5));
                 fragmentSendDataListener.onSendData(data);
             }
         });
