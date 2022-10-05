@@ -144,7 +144,6 @@ public class DetailFragment extends Fragment {
     }
 
     public void stop() {
-        playButton = getView().findViewById(R.id.playButton);
         playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
         if (player.isPlaying()) {
             player.stop();
@@ -155,6 +154,9 @@ public class DetailFragment extends Fragment {
             //    Log.d(TAG, e.getMessage());
             //}
         }
+        playButton.setEnabled(false);
+        seekBar.setProgress(0);
+        seekBar.setEnabled(false);
     }
 
     @Override
