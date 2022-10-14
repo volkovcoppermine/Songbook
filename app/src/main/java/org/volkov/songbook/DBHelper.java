@@ -1,4 +1,4 @@
-package org.volkov.searchtest;
+package org.volkov.songbook;
 
 import android.content.Context;
 import android.database.SQLException;

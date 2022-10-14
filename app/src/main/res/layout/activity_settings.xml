@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/searchFragment"
-        android:name="org.volkov.songbook.SearchFragment"
+        android:id="@+id/settings_container"
+        android:name="org.volkov.songbook.SettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

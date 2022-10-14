@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Воспойте Господу</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_about">О программе</string>
+    <!-- Настройки -->
+    <string name="font_header">Размер шрифта</string>
+    <string name="font_summary">Настроить размер шрифта</string>
+    <string name="theme_header">Тёмная тема</string>
+    <string name="theme_summary">Включить тёмную тему</string>
 </resources>

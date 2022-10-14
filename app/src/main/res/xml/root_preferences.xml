@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SeekBarPreference
+        app:key="font_size"
+        app:title="@string/font_header"
+        app:summary="@string/font_summary"
+        android:max="3"
+        android:defaultValue="1"/>
+
+    <SwitchPreference
+        app:key="theme"
+        app:title="@string/theme_header"
+        app:summary="@string/theme_summary" />
+</PreferenceScreen>

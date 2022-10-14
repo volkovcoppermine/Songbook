@@ -1,4 +1,4 @@
-package org.volkov.searchtest;
+package org.volkov.songbook;
 
 import org.junit.Test;
 

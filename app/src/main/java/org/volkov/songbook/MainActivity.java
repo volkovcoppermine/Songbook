@@ -1,13 +1,11 @@
-package org.volkov.searchtest;
-
-import androidx.appcompat.app.AppCompatActivity;
+package org.volkov.songbook;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
-public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentSendDataListener {
+public class MainActivity extends BaseActivity implements SearchFragment.OnFragmentSendDataListener {
     DetailFragment fragment;
 
     @Override

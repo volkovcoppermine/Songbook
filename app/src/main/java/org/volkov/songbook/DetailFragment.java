@@ -1,8 +1,6 @@
-package org.volkov.searchtest;
+package org.volkov.songbook;
 
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -22,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -123,7 +120,15 @@ public class DetailFragment extends Fragment {
             }
         });
 
-        //songTextView.setText(data.getString("TEXT"));
+        if (player != null) {
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    stop();
+                }
+            });
+        }
+
         songTextView.setText(Html.fromHtml(data.getString("TEXT")));
     }
 
@@ -147,16 +152,14 @@ public class DetailFragment extends Fragment {
         playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
         if (player.isPlaying()) {
             player.stop();
-            //try {
-            //    player.prepare();
-            //    player.seekTo(0);
-            //} catch (IOException e) {
-            //    Log.d(TAG, e.getMessage());
-            //}
+            try {
+                player.prepare();
+                player.seekTo(0);
+                seekBar.setProgress(0);
+            } catch (IOException e) {
+                Log.d(TAG, e.getMessage());
+            }
         }
-        playButton.setEnabled(false);
-        seekBar.setProgress(0);
-        seekBar.setEnabled(false);
     }
 
     @Override
@@ -164,6 +167,12 @@ public class DetailFragment extends Fragment {
         super.onDestroy();
         if (player != null) {
             stop();
+            player.release();
+            player = null;
         }
+
+        playButton.setEnabled(false);
+        seekBar.setProgress(0);
+        seekBar.setEnabled(false);
     }
 }

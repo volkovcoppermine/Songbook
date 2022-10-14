@@ -1,12 +1,10 @@
-package org.volkov.searchtest;
-
-import androidx.appcompat.app.AppCompatActivity;
+package org.volkov.songbook;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
     public static final String SELECTED_ITEM = "SELECTED_ITEM";
     Bundle selectedItem;
 
