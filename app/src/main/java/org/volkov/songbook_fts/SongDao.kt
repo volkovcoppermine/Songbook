@@ -6,7 +6,7 @@ import androidx.room.Query
 
 @Dao
 interface SongDao {
-    @Query("select `rowid`, * from songs")
+    @Query("select rowid, num, title from songs")
     fun getAllSongs(): LiveData<List<Song>>
 
     @Query("select rowid, num, title, snippet(songs) as lyrics from Songs where lyrics match :query || '*'")
