@@ -6,7 +6,7 @@ import androidx.room.Fts4
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "songs")
-@Fts4
+@Fts4(tokenizer = "unicode61")
 data class Song (
     @PrimaryKey
     @ColumnInfo(name = "rowid")
