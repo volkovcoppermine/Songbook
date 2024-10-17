@@ -27,7 +27,7 @@ class SongActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         title = getString(R.string.app_name)
 
-        detailViewModel = ViewModelProvider(this)[org.volkov.songbook_fts.DetailViewModel::class.java]
+        detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         detailViewModel.prepare(intent.extras?.getString("NUM").toString(),this)
     }
 

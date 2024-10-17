@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class SongAdapter : RecyclerView.Adapter<SongAdapter.SongHolder>() {
-    val TAG = "Search"
     var songs: ArrayList<Song> = arrayListOf()
         set(value) {
             field = value
@@ -27,8 +26,7 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongHolder>() {
 
         override fun onClick(v: View) {
             val current: Song = songs[bindingAdapterPosition]
-            Log.d(TAG, "onClick: $current")
-            val intent: Intent = Intent(context, SongActivity::class.java)
+            val intent = Intent(context, SongActivity::class.java)
             intent.putExtra("NUM", current.num)
             context.startActivity(intent)
         }
@@ -50,6 +48,6 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongHolder>() {
         if(!current.lyrics.isNullOrEmpty()) {
             holder.textViewSnippet.visibility = View.VISIBLE
             holder.textViewSnippet.text = Html.fromHtml(current.lyrics, Html.FROM_HTML_MODE_COMPACT)
-        }
+        } else holder.textViewSnippet.visibility = View.GONE
     }
 }

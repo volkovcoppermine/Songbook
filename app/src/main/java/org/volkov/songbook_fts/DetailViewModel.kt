@@ -3,7 +3,6 @@ package org.volkov.songbook_fts
 import android.app.Application
 import android.content.Context
 import android.content.res.AssetFileDescriptor
-import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel

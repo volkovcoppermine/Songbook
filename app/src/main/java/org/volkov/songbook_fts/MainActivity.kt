@@ -5,7 +5,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.CheckBox
-import android.widget.CompoundButton
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButton.OnCheckedChangeListener
 
 class MainActivity : AppCompatActivity() {
-    val TAG = "MainActivity"
     private lateinit var songViewModel: SongViewModel
     private val adapter: SongAdapter = SongAdapter()
 
@@ -32,21 +28,20 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        songViewModel = ViewModelProvider(this)[org.volkov.songbook_fts.SongViewModel::class.java]
+        songViewModel = ViewModelProvider(this)[SongViewModel::class.java]
 
         val searchResultsView = findViewById<RecyclerView>(R.id.search_results_view)
         val searchBarView = findViewById<EditText>(R.id.search_bar_view)
         val checkBoxFTSView = findViewById<CheckBox>(R.id.checkBoxFTS)
 
         searchBarView.addTextChangedListener(object : TextWatcher {
-            var isFTS: Boolean = false;
+            var isFTS: Boolean = false
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 isFTS = checkBoxFTSView.isChecked
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d(TAG, "onTextChanged isFTS: $isFTS")
                 performSearch(p0.toString(), isFTS)
             }
 
@@ -70,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         if (result.isNullOrEmpty()) performSearch("", false)
     }
 
-    private fun performSearch(query: String, fts: Boolean): Unit {
+    private fun performSearch(query: String, fts: Boolean) {
         songViewModel.performSearch(query, fts)
         songViewModel.searchResults.observe(
             this
