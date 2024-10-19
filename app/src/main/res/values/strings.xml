@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Songbook</string>
+    <string name="app_name">Воспойте Господу</string>
     <string name="search_hint">Введите запрос</string>
     <string name="fts_checkbox">Полнотекстовый поиск</string>
     <string name="midi_not_found">Не могу прочитать ноты</string>

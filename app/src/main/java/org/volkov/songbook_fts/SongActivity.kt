@@ -18,8 +18,6 @@ class SongActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySongBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
-        //setContentView(R.layout.activity_song)
         val view = binding.root
         setContentView(view)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.song)) { v, insets ->

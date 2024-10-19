@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:pdfView_divider="@drawable/pdf_viewer_divider"
-        app:pdfView_showDivider="true" />
+        app:pdfView_showDivider="true"
+        app:pdfView_quality="enhanced"/>
 
 </LinearLayout>
