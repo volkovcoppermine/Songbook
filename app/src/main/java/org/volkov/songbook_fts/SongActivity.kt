@@ -9,14 +9,19 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import org.volkov.songbook_fts.databinding.ActivitySongBinding
 
 class SongActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySongBinding
     private lateinit var detailViewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySongBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_song)
+        //setContentView(R.layout.activity_song)
+        val view = binding.root
+        setContentView(view)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.song)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -27,8 +32,11 @@ class SongActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         title = getString(R.string.app_name)
 
+        val num: String = intent.extras?.getString("NUM").toString()
         detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
-        detailViewModel.prepare(intent.extras?.getString("NUM").toString(),this)
+        detailViewModel.prepare(num, this)
+
+        binding.pdfView.initWithFile(detailViewModel.fileFromAsset(this, "scores/$num.pdf"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

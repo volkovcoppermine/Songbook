@@ -18,6 +18,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -48,6 +52,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.recyclerview)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.pdf.viewer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
