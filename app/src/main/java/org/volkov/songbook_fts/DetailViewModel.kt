@@ -17,10 +17,15 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     private var player: MediaPlayer? = null
 
     fun prepare(num: String, context: Context) {
-        canPlay = context.resources.assets.list("midi")?.contains("$num.mid") ?: false
+        canPlay = if (num != "Нет результатов")
+            context.resources.assets.list("midi")?.contains("$num.mid") ?: false
+        else
+            true
+
         if (canPlay) {
+            val path = if (num != "Нет результатов") "midi/$num.mid" else "Purr.wav"
             player = MediaPlayer()
-            val afd: AssetFileDescriptor = context.assets.openFd("midi/$num.mid")
+            val afd: AssetFileDescriptor = context.assets.openFd(path)
             player?.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
             afd.close()
             player?.prepare()

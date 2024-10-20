@@ -34,7 +34,10 @@ class SongActivity : AppCompatActivity() {
         detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         detailViewModel.prepare(num, this)
 
-        binding.pdfView.initWithFile(detailViewModel.fileFromAsset(this, "scores/$num.pdf"))
+        if (num != "Нет результатов")
+            binding.pdfView.initWithFile(detailViewModel.fileFromAsset(this, "scores/$num.pdf"))
+        else
+            binding.pdfView.initWithFile(detailViewModel.fileFromAsset(this, "Cat.pdf"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
