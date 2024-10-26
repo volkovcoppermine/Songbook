@@ -1,5 +1,6 @@
 package org.volkov.songbook_fts
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -49,6 +50,11 @@ class SongActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_play -> {
                 detailViewModel.togglePlayback(this)
+                return true
+            }
+            R.id.action_about -> {
+                val intent = Intent(this, CreditsActivity::class.java)
+                startActivity(intent)
                 return true
             }
         }

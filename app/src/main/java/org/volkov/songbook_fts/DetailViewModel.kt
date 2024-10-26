@@ -23,12 +23,12 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
             true
 
         if (canPlay) {
-            val path = if (num != "Нет результатов") "midi/$num.mid" else "Purr.wav"
+            val path = if (num != "Нет результатов") "midi/$num.mid" else "Purr.mp3"
             player = MediaPlayer()
             val afd: AssetFileDescriptor = context.assets.openFd(path)
             player?.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
             afd.close()
-            player?.prepare()
+            player?.prepareAsync()
         }
     }
 

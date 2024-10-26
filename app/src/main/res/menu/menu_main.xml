@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_play"
-        android:icon="@drawable/baseline_music_note"
-        android:title="@string/action_play"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
         app:showAsAction="never"/>

@@ -1,9 +1,12 @@
 package org.volkov.songbook_fts
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
@@ -74,5 +77,21 @@ class MainActivity : AppCompatActivity() {
         songViewModel.searchResults.observe(
             this
         ) { value -> adapter.songs = value as ArrayList<Song> }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true;
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_about -> {
+                val intent = Intent(this, CreditsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return true
     }
 }
