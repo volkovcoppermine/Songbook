@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Воспойте Господу</string>
+    <string name="search_hint">Введите запрос</string>
+    <string name="fts_checkbox">Полнотекстовый поиск</string>
+    <string name="midi_not_found">Не могу прочитать ноты</string>
+    <string name="action_about">О программе</string>
+    <string name="action_play">Прослушать</string>
+    <string name="credits_text">Илья Волков, 2024\n
+        \n<b>Лицензии третьих сторон:</b>
+        \nPdf Viewer For Android (Rajat Mittal, 2020, MIT)
+        \ngithub.com/afreakyelf/Pdf-Viewer\n
+        \nRoom (Google, Apache 2.0)
+        \ndeveloper.android.com/training/data-storage/room\n
+        \nKotlin (JetBrains, Apache 2.0)
+        \nkotlinlang.org</string>
+</resources>
