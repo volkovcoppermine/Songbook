@@ -4,17 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import org.volkov.songbook_fts.databinding.ActivitySongBinding
+import org.volkov.songbook_fts.db.NO_RESULTS
+import org.volkov.songbook_fts.util.MusicPlayer
+import org.volkov.songbook_fts.util.fileFromAsset
+import org.volkov.songbook_fts.viewmodel.DetailViewModel
+import org.volkov.songbook_fts.viewmodel.ViewModelFactory
 
 class SongActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongBinding
     private lateinit var detailViewModel: DetailViewModel
+    private var player: MusicPlayer = MusicPlayer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,13 +30,13 @@ class SongActivity : AppCompatActivity() {
         title = getString(R.string.app_name)
 
         val num: String = intent.extras?.getString("NUM").toString()
-        detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
-        detailViewModel.prepare(num, this)
+        detailViewModel = ViewModelProvider(this, ViewModelFactory(player))[DetailViewModel::class.java]
+        detailViewModel.prepare(this, num)
 
-        if (num != "Нет результатов")
-            binding.pdfView.initWithFile(detailViewModel.fileFromAsset(this, "scores/$num.pdf"))
+        if (num == NO_RESULTS)
+            binding.pdfView.initWithFile(fileFromAsset(this, "Cat.pdf"))
         else
-            binding.pdfView.initWithFile(detailViewModel.fileFromAsset(this, "Cat.pdf"))
+            binding.pdfView.initWithFile(fileFromAsset(this, "scores/$num.pdf"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -44,7 +47,7 @@ class SongActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_play -> {
-                detailViewModel.togglePlayback(this)
+                player?.togglePlayback()
                 return true
             }
             R.id.action_about -> {
@@ -58,6 +61,6 @@ class SongActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        detailViewModel.release()
+        player?.release()
     }
 }

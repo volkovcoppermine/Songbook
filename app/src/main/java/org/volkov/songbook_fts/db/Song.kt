@@ -1,4 +1,4 @@
-package org.volkov.songbook_fts
+package org.volkov.songbook_fts.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

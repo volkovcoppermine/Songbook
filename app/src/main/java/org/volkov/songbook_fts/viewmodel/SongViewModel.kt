@@ -1,4 +1,4 @@
-package org.volkov.songbook_fts
+package org.volkov.songbook_fts.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import kotlinx.coroutines.launch
+import org.volkov.songbook_fts.db.Song
+import org.volkov.songbook_fts.db.SongRepository
 
 class SongViewModel(application: Application) : AndroidViewModel(application) {
     private val searchQuery: MutableLiveData<String> = MutableLiveData()

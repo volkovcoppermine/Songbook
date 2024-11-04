@@ -1,4 +1,4 @@
-package org.volkov.songbook_fts
+package org.volkov.songbook_fts.db
 
 import android.content.Context
 import androidx.room.Database
