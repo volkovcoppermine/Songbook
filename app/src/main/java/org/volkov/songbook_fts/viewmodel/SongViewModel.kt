@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.volkov.songbook_fts.db.Song
 import org.volkov.songbook_fts.db.SongRepository
 
@@ -18,10 +20,11 @@ class SongViewModel(application: Application) : AndroidViewModel(application) {
 
     fun performSearch(query: String, fts: Boolean) {
         viewModelScope.launch {
-            searchResults =
+            searchResults = withContext(Dispatchers.IO) {
                 if (query.isEmpty()) songRepository.getAllSongs() else if (fts) songRepository.performLyricsSearch(
                     query
                 ) else songRepository.performSearch(query)
+            }
         }
     }
 }

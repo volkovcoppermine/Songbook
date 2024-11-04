@@ -13,8 +13,6 @@ class MusicPlayer {
         player.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
         afd.close()
         player.prepare()
-        Log.d("PLAYER", "isPlaying: ${player.isPlaying}")
-        Log.d("PLAYER", "duration: ${player.duration}")
     }
 
     fun togglePlayback() {

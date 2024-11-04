@@ -1,12 +1,14 @@
-package org.volkov.songbook_fts
+package org.volkov.songbook_fts.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import org.volkov.songbook_fts.R
 import org.volkov.songbook_fts.databinding.ActivitySongBinding
 import org.volkov.songbook_fts.db.NO_RESULTS
 import org.volkov.songbook_fts.util.MusicPlayer
@@ -18,6 +20,7 @@ class SongActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongBinding
     private lateinit var detailViewModel: DetailViewModel
     private var player: MusicPlayer = MusicPlayer()
+    private var canPlay: Boolean = true;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,7 @@ class SongActivity : AppCompatActivity() {
 
         val num: String = intent.extras?.getString("NUM").toString()
         detailViewModel = ViewModelProvider(this, ViewModelFactory(player))[DetailViewModel::class.java]
-        detailViewModel.prepare(this, num)
+        canPlay = detailViewModel.prepare(this, num)
 
         if (num == NO_RESULTS)
             binding.pdfView.initWithFile(fileFromAsset(this, "Cat.pdf"))
@@ -47,7 +50,8 @@ class SongActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_play -> {
-                player?.togglePlayback()
+                if (canPlay) player.togglePlayback()
+                else Toast.makeText(this, R.string.midi_not_found, Toast.LENGTH_SHORT).show()
                 return true
             }
             R.id.action_about -> {
@@ -61,6 +65,6 @@ class SongActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        player?.release()
+        player.release()
     }
 }

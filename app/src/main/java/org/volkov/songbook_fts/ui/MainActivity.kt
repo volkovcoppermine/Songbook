@@ -1,4 +1,4 @@
-package org.volkov.songbook_fts
+package org.volkov.songbook_fts.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.volkov.songbook_fts.R
 import org.volkov.songbook_fts.db.Song
 import org.volkov.songbook_fts.viewmodel.SongViewModel
 
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
         songViewModel = ViewModelProvider(this)[SongViewModel::class.java]
 
+        setupSearch()
+    }
+
+    private fun setupSearch() {
         val searchResultsView = findViewById<RecyclerView>(R.id.search_results_view)
         val searchBarView = findViewById<EditText>(R.id.search_bar_view)
         val checkBoxFTSView = findViewById<CheckBox>(R.id.checkBoxFTS)
@@ -61,8 +66,8 @@ class MainActivity : AppCompatActivity() {
         searchResultsView.setHasFixedSize(true)
         searchResultsView.adapter = adapter
 
-        val result: List<Song>? = songViewModel.searchResults.value
-        if (result.isNullOrEmpty()) performSearch("", false)
+        //val result: List<Song>? = songViewModel.searchResults.value
+        performSearch("", false)
     }
 
     private fun performSearch(query: String, fts: Boolean) {

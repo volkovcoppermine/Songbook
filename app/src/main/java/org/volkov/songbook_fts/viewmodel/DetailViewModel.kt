@@ -12,18 +12,18 @@ import org.volkov.songbook_fts.util.MusicPlayer
 class DetailViewModel(_player: MusicPlayer) : ViewModel() {
     private var player: MusicPlayer = _player
 
-    fun prepare(context: Context, num: String) {
+    fun prepare(context: Context, num: String): Boolean {
+        val nothingToShow: Boolean = num == NO_RESULTS
+        val canPlay: Boolean = if (nothingToShow) true
+        else context.resources.assets.list("midi")?.contains("$num.mid") == true
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val nothingToShow: Boolean = num == NO_RESULTS
-                val canPlay: Boolean = if (nothingToShow) true
-                    else context.resources.assets.list("midi")?.contains("$num.mid") == true
-
                 if (canPlay) {
                     val path = if (nothingToShow) "Purr.mp3" else "midi/$num.mid"
                     player.setup(context, path)
                 }
             }
         }
+        return canPlay
     }
 }
