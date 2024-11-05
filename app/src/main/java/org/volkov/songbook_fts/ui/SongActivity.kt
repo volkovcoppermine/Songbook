@@ -10,7 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import org.volkov.songbook_fts.R
 import org.volkov.songbook_fts.databinding.ActivitySongBinding
-import org.volkov.songbook_fts.db.NO_RESULTS
+import org.volkov.songbook_fts.data.NO_RESULTS
 import org.volkov.songbook_fts.util.MusicPlayer
 import org.volkov.songbook_fts.util.fileFromAsset
 import org.volkov.songbook_fts.viewmodel.DetailViewModel

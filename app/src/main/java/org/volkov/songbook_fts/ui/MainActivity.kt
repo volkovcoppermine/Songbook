@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.volkov.songbook_fts.R
-import org.volkov.songbook_fts.db.Song
+import org.volkov.songbook_fts.data.Song
 import org.volkov.songbook_fts.viewmodel.SongViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         searchResultsView.setHasFixedSize(true)
         searchResultsView.adapter = adapter
 
-        //val result: List<Song>? = songViewModel.searchResults.value
         performSearch("", false)
     }
 

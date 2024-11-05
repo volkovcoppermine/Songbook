@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.volkov.songbook_fts.R
-import org.volkov.songbook_fts.db.Song
+import org.volkov.songbook_fts.data.Song
 
 class SongAdapter : RecyclerView.Adapter<SongAdapter.SongHolder>() {
     var songs: ArrayList<Song> = arrayListOf()
