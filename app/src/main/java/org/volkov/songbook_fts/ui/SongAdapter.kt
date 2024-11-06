@@ -1,13 +1,14 @@
-package org.volkov.songbook_fts
+package org.volkov.songbook_fts.ui
 
 import android.content.Intent
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import org.volkov.songbook_fts.R
+import org.volkov.songbook_fts.data.Song
 
 class SongAdapter : RecyclerView.Adapter<SongAdapter.SongHolder>() {
     var songs: ArrayList<Song> = arrayListOf()
